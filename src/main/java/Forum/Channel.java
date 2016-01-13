@@ -8,7 +8,14 @@ import lombok.Data;
 
 @Data
 public class Channel {
-    Integer channelid;
-    String name;
-    String pass;
+    private Integer cid;
+    private String name;
+    private String pass;
+
+    public Channel() {}
+
+    public Channel(String name, String pass) {
+        this.name = name;
+        this.pass = pass;
+    }
 }

@@ -7,9 +7,20 @@ import lombok.Data;
  */
 
 @Data
-public class Post {
-    Integer channelid;
-    Integer postid;
-    String content;
+public class Post implements Comparable<Post> {
+    private Integer channelid;
+    private Integer postid;
+    private String content;
 
+    public Post() {}
+
+    public Post(Integer channelid, String content) {
+        this.channelid = channelid;
+        this.content = content;
+    }
+
+    @Override
+    public int compareTo(Post o) {
+        return postid.compareTo(o.postid);
+    }
 }

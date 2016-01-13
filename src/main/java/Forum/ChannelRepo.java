@@ -1,5 +1,6 @@
 package Forum;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,38 +10,41 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ChannelRepo {
     Map<Integer, Channel> data = new HashMap<>();
-    AtomicInteger idSequence = new AtomicInteger();
+    AtomicInteger id = new AtomicInteger();
 
 
     public boolean exists(Integer channelid) {
         return data.get(channelid)!=null;
     }
 
-    public Channel save(String name, String pass) {
-        if (findByName(name)!=null) return null;    //channel już istnieje
-        Channel nch = new Channel();
-        nch.setName(name);
-        nch.setPass(pass);
-        nch.setChannelid(idSequence.incrementAndGet());
-        data.put(nch.getChannelid(), nch);
-        return nch;
-    }
+    public Channel save(Channel ch) {
+        if (ch.getCid()==null) {
+            ch.setCid(id.incrementAndGet());
+            data.put(ch.getCid(), ch);
+        } else {
+            data.put(ch.getCid(), ch);
+        }
+        return ch;
 
+    }
 
     public void remove(Integer channelid) {
         data.remove(channelid);
     }
 
-
     public Channel findByName(String name){
         for(Channel ch : data.values()) {
-            if (ch.name.equals(name)) return ch;
+            if (ch.getName().equals(name)) return ch;
         }
         return null;
     }
 
     public Channel findOne(Integer channelID){
         return data.get(channelID);
+    }
+
+    public Collection<Channel> findAll() {
+        return data.values();
     }
 
 }

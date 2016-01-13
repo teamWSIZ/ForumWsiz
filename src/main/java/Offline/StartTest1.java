@@ -1,9 +1,6 @@
 package Offline;
 
-import Forum.Channel;
-import Forum.ChannelRepo;
-import Forum.ForumService;
-import Forum.PostRepo;
+import Forum.*;
 
 /**
  * Created by pm on 1/13/16.
@@ -14,21 +11,21 @@ public class StartTest1 {
         PostRepo pRepo = new PostRepo();
         ForumService service = new ForumService(pRepo, chRepo);
 
-        chRepo.save("Wall", "XXX");
-        Channel ch = chRepo.findByName("Wall");
-        System.out.println(chRepo.exists(ch.getChannelid()));
+        chRepo.save(new Channel("wall", "XXX"));
+        Channel ch = chRepo.findByName("wall");
+        System.out.println(chRepo.exists(ch.getCid()));
 
-        Integer id = ch.getChannelid();
-        pRepo.save(id, "Abra kadabra");
-        pRepo.save(id, "Abra kadabra");
-        pRepo.save(id, "Abra kadabra");
-        pRepo.save(id, "Abra kadabra");
+        Integer id = ch.getCid();
+        pRepo.save(new Post(id, "Abra kadabra"));
+        pRepo.save(new Post(id, "Abra kadabra"));
+        pRepo.save(new Post(id, "Abra kadabra"));
+        pRepo.save(new Post(id, "Abra kadabra"));
 
         System.out.println(pRepo.count());
 
-        chRepo.save("Xiao", "11");    //2?
+        chRepo.save(new Channel("Xiao", "11"));    //channelid==2
         for (int i = 0; i < 6; i++) {
-            service.savePost(2, "Wuu"  + i);
+            service.addPost("Xiao", "Wuu"  + i);
         }
 
 

@@ -18,13 +18,13 @@ public class PostRepo {
         return data.get(postid);
     }
 
-    //Zapisuje do data i zwraca z poprawnym ID
-    public Post save(Integer channelid, String content) {
-        Post p = new Post();
-        p.setChannelid(channelid);
-        p.setContent(content);
-        p.setPostid(idSequence.incrementAndGet());
-        data.put(p.getPostid(), p);
+    public Post save(Post p) {
+        if (p.getPostid()==null) {
+            p.setPostid(idSequence.incrementAndGet());
+            data.put(p.getPostid(), p);
+        } else {
+            data.put(p.getPostid(), p);
+        }
         return p;
     }
 
