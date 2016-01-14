@@ -10,6 +10,7 @@ public class ForumRestController implements InitializingBean {
     ChannelRepo chRepo;
     PostRepo pRepo;
     ForumService service;
+    private final String version = "0.1.0";
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -18,6 +19,15 @@ public class ForumRestController implements InitializingBean {
         service = new ForumService(pRepo, chRepo);
         service.addChannel("wall", "");
     }
+
+    @RequestMapping(value = {"/"})
+    @ResponseBody
+    public Rest greeting() {
+        Rest r = new Rest();
+        r.setResult("Forum WSIZ API version " + version);
+        return r;
+    }
+
 
     ////////// CHANNELS
 
