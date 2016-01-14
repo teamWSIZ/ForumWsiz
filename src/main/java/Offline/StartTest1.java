@@ -31,11 +31,11 @@ public class StartTest1 {
 
         System.out.println(pRepo.findByChannelId(2));
         System.out.println(pRepo.count());
-        service.removeChannel(2,"xx");
+        service.delChannel(2,"xx");
         System.out.println(pRepo.count());
-        service.removePost(2,"11",1);
+        service.delPost(2,"11",1);
         System.out.println(pRepo.count());
-        service.removeChannel(2,"11");
+        service.delChannel(2,"11");
         System.out.println(pRepo.count());
 
     }

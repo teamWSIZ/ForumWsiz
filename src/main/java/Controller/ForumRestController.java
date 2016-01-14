@@ -2,11 +2,9 @@ package Controller;
 
 import Forum.*;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class ForumRestController implements InitializingBean {
     ChannelRepo chRepo;
@@ -37,7 +35,7 @@ public class ForumRestController implements InitializingBean {
     @ResponseBody
     public Rest delChannel(@RequestParam(value = "name") String name,
                            @RequestParam(value = "password") String pass) {
-        service.removeChannelByName(name, pass);
+        service.delChannel(name, pass);
         return new Rest();
     }
 
@@ -49,6 +47,17 @@ public class ForumRestController implements InitializingBean {
         r.setResult(chRepo.findAll());
         return r;
     }
+
+
+    @RequestMapping(value = {"/channel/join"})
+    @ResponseBody
+    public Rest joinChannel(@RequestParam(value = "name") String name,
+                           @RequestParam(value = "password") String pass) {
+        if (service.checkPassword(name, pass)) return new Rest();
+        else return new Rest("Nieprawidłowa autoryzacja");
+    }
+
+
 
     ///////// POSTS
 
@@ -82,7 +91,7 @@ public class ForumRestController implements InitializingBean {
                          @RequestParam(value = "afterid", defaultValue = "-1") Integer afterId){
         if (!service.checkPassword(name, pass)) return new Rest("Nieprawidłowa autoryzacja");
         Rest r = new Rest();
-        r.setResult(service.listPostsAfter(name, afterId));
+        r.setResult(service.listPosts(name, afterId));
         return r;
     }
 

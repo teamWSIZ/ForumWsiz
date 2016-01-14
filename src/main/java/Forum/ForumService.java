@@ -10,6 +10,8 @@ public class ForumService {
     PostRepo pRepo;
     ChannelRepo chRepo;
 
+    ////////// PASSWORDS
+
     public ForumService(PostRepo pRepo, ChannelRepo chRepo) {
         this.pRepo = pRepo;
         this.chRepo = chRepo;
@@ -40,12 +42,12 @@ public class ForumService {
         return p;
     }
 
-    public void removePost(Integer channelid, String password, Integer postid ) {
+    public void delPost(Integer channelid, String password, Integer postid ) {
         if (!checkPassword(channelid, password)) return;
         pRepo.remove(postid);
     }
 
-    public List<Post> listPostsAfter(String channelname, Integer afterId) {
+    public List<Post> listPosts(String channelname, Integer afterId) {
         Channel ch = chRepo.findByName(channelname);
         List<Post> all = pRepo.findByChannelId(ch.getCid());
         List<Post> r = new ArrayList<>();
@@ -65,13 +67,13 @@ public class ForumService {
         return chRepo.save(nCh);
     }
 
-    public void removeChannel(Integer channelid, String pass) {
+    public void delChannel(Integer channelid, String pass) {
         if (!checkPassword(channelid,pass)) return;
         pRepo.removeByChannelid(channelid);
         chRepo.remove(channelid);
     }
 
-    public void removeChannelByName(String name, String pass) {
+    public void delChannel(String name, String pass) {
         Channel ch = chRepo.findByName(name);
         if (ch==null) return;
         Integer id = ch.getCid();
