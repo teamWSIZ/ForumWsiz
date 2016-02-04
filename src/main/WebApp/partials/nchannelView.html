@@ -1,0 +1,37 @@
+<div class="col-sm-8">
+
+    <div class="">
+        <h3 style="text-align: center"> New channel</h3>
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inNa" class="col-sm-3 control-label">
+                    Channel Name
+                </label>
+                <div class="col-sm-9">
+                    <input ng-model="newCha.name" class="form-control" id="inNa" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inPass" class="col-sm-3 control-label">
+                    Password
+                </label>
+                <div class="col-sm-9">
+                    <input ng-model="newCha.pass" class="form-control" id="inPass"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+
+                    <button class="btn btn-info" ng-click="createChannel()">
+                        Create new channel
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>

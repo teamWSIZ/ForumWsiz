@@ -1,0 +1,55 @@
+<div class="col-sm-8">
+
+    <div class="panel panel-primary">
+        <h3 class="panel-heading panel-title">
+            <form class="form-inline">
+
+
+                <div class="form-group">
+                    Channel:
+                    <select class="form-control narrow-select"
+                            ng-model="selCha" ng-change="selectChannel(selCha)"
+                            ng-options="ch.name for ch in channels track by ch.cid"></select>
+                </div>
+                &nbsp
+                <div class="form-group">
+                    Password:
+                    <input type="password" ng-model="selCha.pass" ng-change="selectChannel(selCha)"
+                           class="form-control narrow-select">
+                </div>
+
+            </form>
+        </h3>
+
+        <div class="panel-body">
+
+            <table class="table table-striped table-condensed table-bordered">
+                <thead>
+                <tr class="clickable" ng-class="'info'">
+                    <td style="width: 40px"> Id</td>
+                    <td> Tekst  </td>
+                    <td style="width: 30px"> </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in posts">
+                    <td style="width: 20px;"> {{ p.postid }} </td>
+                    <td> {{p.content}} </td>
+                    <td> <em class="glyphicon glyphicon-trash clickable" ng-click="delPost(p)"></em></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <input class="form-control" placeholder="Your message... (empty reloads)"
+                   ng-model="newPost"
+                   ng-dblclick="loadPosts()"
+                   ng-keyup="$event.keyCode==13 && submitPost()"
+            >
+        </div>
+
+        <div class="panel-footer">
+        </div>
+    </div>
+
+
+</div>

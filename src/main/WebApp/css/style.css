@@ -1,0 +1,52 @@
+
+.boxed {
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: #2a6496;
+    padding: 5px;
+    margin-bottom: 5px;
+
+}
+.narrow-box {
+    width: 400px;
+}
+.narrow-select {
+    max-width:150px;
+}
+
+.pagestyle {
+    background-color: white;
+    color: #212529;
+}
+
+.topnavbar {
+    background-color: #262a2e;
+    color: #a5adb4;
+    border-bottom: 1px solid black;
+    height: 50px;
+}
+
+.mainbody {
+    padding-top: 10px;
+}
+
+.leftmenu {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.mainpanel {
+    border-top-left-radius: 3px;
+}
+
+.panel-body-padding {
+    padding-left: 5px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.gray {
+    color: #bababa;
+}

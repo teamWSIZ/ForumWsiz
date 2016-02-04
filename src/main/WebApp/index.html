@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="forumClient2" ng-controller="masterCtrl" xmlns:ng-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>WSIZ Forum Client</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/app.properties.js"></script>
+    <script src="js/appF.js"></script>
+
+    <script src="js/controllers/masterCtrl.js"></script>
+    <script src="js/controllers/userCtrl.js"></script>
+    <script src="js/controllers/forumCtrl.js"></script>
+    <script src="js/controllers/nchannelCtrl.js"></script>
+
+    <script src="js/factories/masterFactory.js"></script>
+    <script src="js/masterDirectives.js"></script>
+
+</head>
+<body data-ng-cloak="" class="pagestyle">
+
+
+<div class="container-fluid">
+    <!--gets whole row-->
+    <ng-include src="'partials/topBar.html'"></ng-include>
+
+    <div class="row mainbody">
+        <div class="col-sm-3">
+            <ng-include src="'partials/sidebar.html'"></ng-include>
+        </div>
+        <div class="col-sm-9 mainpanel">
+            <div class="row">
+                <div data-ng-view="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
